@@ -1,5 +1,5 @@
 
-git子模块创建记录
+git子模块创建
 ```bash
 git submodule add https://github.com/the-tcpdump-group/libpcap.git lib/libpcap 
 git submodule add https://github.com/ntop/nDPI.git lib/nDPI 
@@ -9,7 +9,7 @@ git submodule status
  294b7e18897d4c4cdf2f584dabb87b37015b2337 lib/nDPI (1.7-4946-g294b7e188)
 ```
 
-git自模块同步命令
+git自模块同步
 ```bash
 git submodule update --init --recursive
 cd ./lib/libpcap
@@ -22,7 +22,7 @@ cd ./lib/tensorflow
 git checkout 8a6f519eb79493ccbbee12af45732b19498242da
 ```
 
-git自模块编译命令
+git自模块编译
 ```bash
 cd ./lib/libpcap
 ./autogen.sh 
