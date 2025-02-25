@@ -1,0 +1,9 @@
+[submodule "lib/libpcap"]
+	path = lib/libpcap
+	url = https://github.com/the-tcpdump-group/libpcap.git
+[submodule "lib/nDPI"]
+	path = lib/nDPI
+	url = https://github.com/ntop/nDPI.git
+[submodule "lib/tensorflow"]
+	path = lib/tensorflow
+	url = https://github.com/tensorflow/tensorflow.git

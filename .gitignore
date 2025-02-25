@@ -1,0 +1,10 @@
+GPATH
+GRTAGS
+GTAGS
+gtags.files
+gtags.conf
+compile_flags.txt
+*.[oad]
+*.bin
+*.gz
+build
