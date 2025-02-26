@@ -148,6 +148,12 @@ Loading existing model...
 Predicted Label: Vpn_P2p
 ```
 
+#### Convert h5 to tflite
+
+```bash
+python ./4_convert.py ./model_2class_Mnist/model.h5   
+```
+
 
 
 ## Building from sources
