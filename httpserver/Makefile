@@ -24,6 +24,7 @@
 #               needed (see documentation for GNU make Version 3.81, April 2006,
 #               section 4.13). The utility sed is used.
 #========================================== makefile template version 1.9 ======
+CURRENT_DIR 	:= $(notdir $(shell pwd))
 
 #export CC=/home/dnsnat/workspace/database/source/opensource/FMQL-Linux-SDK-Prj-20240923/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
 #export AR=/home/dnsnat/workspace/database/source/opensource/FMQL-Linux-SDK-Prj-20240923/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-ar
@@ -37,7 +38,7 @@ DEBUG          	:= YES
 PROFILE        	:= NO
 
 # ------------  name of the executable  ----------------------------------------
-EXECUTABLE      := $(MACHINE)-aifw
+EXECUTABLE      := $(MACHINE)-$(CURRENT_DIR)
 
 # ------------  list of all source files  --------------------------------------
 SOURCES         := $(wildcard ./*.c ../lib/cJSON/*.c ../lib/mongoose/*.c ../lib/sqlite3/*.c ./src/*.c  ./src/handlers/*.c )

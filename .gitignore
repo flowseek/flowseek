@@ -8,3 +8,4 @@ compile_flags.txt
 *.bin
 *.gz
 build
+x86_64-pc-linux-gnu-*

@@ -8,6 +8,7 @@ goal of becoming **a unifying network data analytics framework for researchers**
 across experiments.
 
 
+
 ## Main Features
 
 * **Performance:** FlowSeek is designed to be fast: [**AF_PACKET_V3/FANOUT**][packet] on Linux, multiprocessing, native
@@ -22,18 +23,22 @@ reproducible and deployable. By using FlowSeek as a common framework, researcher
 the same feature computation logic, and thus, a fair comparison is possible. Moreover, trained models can be deployed
 and evaluated on live networks using [**NFPlugins**][nfplugin].
 
+
+
 ## How to get it?
 
 Binary installers for the latest released version are available.
 
 ```bash
-wget flowseek
+wget https://github.com/flowseek/flowseek/releases/latest/download/flowseek.tar.gz
 ```
 
 > **Windows Notes**: FlowSeek does not include capture drivers on Windows (license restrictions). It is required to
 > install [Npcap drivers][npcap] before installing FlowSeek.
 > If Wireshark is already installed on Windows, then Npcap drivers are already installed, and you do not need to perform
 > any additional action.
+
+
 
 ## How to use it?
 
@@ -42,26 +47,28 @@ wget flowseek
 Dealing with a big pcap file and want to aggregate into labeled network flows? **Flowseek** make this path easier in
 a few lines:
 
-```python
-
+```bash
+tar -xvf flowseek.tar.gz
+cd x86_64-pc-linux-gnu-flowseek
+sudo ./x86_64-pc-linux-gnu-flowseek -i wlan0
 ```
 
-```python
+Open the browser http://localhost:3000.
 
-```
+![](assets/0250226_111807.png)
+
+
 
 ### System visibility
 
 FlowSeek probes the monitored system's kernel to obtain information on open Internet sockets and collects guaranteed
 ground-truth (process name, PID, etc.) at the application level.
 
-```python
+```bash
 
 ```
 
-```python
 
-```
 
 ### Post-mortem statistical flow features extraction
 
@@ -126,41 +133,26 @@ as input features. For the sake of brevity, we decide to predict only at the flo
 
 ## Building from sources
 
-git子模块创建
+git自模块同步和编译，只需第一次编译时执行
 ```bash
-git submodule add https://github.com/the-tcpdump-group/libpcap.git lib/libpcap 
-git submodule add https://github.com/ntop/nDPI.git lib/nDPI 
-git submodule add https://github.com/tensorflow/tensorflow.git lib/tensorflow
-git submodule status
- 2852d15aeee0a493f01b82ac163d7510441bfaac lib/libpcap (libpcap-1.8.1-3760-g2852d15a)
- 294b7e18897d4c4cdf2f584dabb87b37015b2337 lib/nDPI (1.7-4946-g294b7e188)
+chmod +x ./build.sh
+./build.sh check
+./build.sh lib
 ```
 
-git自模块同步
+flowseek编译
+
 ```bash
-git submodule update --init --recursive
-cd ./lib/libpcap
-git checkout 2852d15aeee0a493f01b82ac163d7510441bfaac
-
-cd ./lib/nDPI
-git checkout 294b7e18897d4c4cdf2f584dabb87b37015b2337
-
-cd ./lib/tensorflow
-git checkout 8a6f519eb79493ccbbee12af45732b19498242da
+./build.sh make
 ```
 
-git自模块编译
-```bash
-cd ./lib/libpcap
-./autogen.sh 
-./configure --disable-shared --disable-dbus  --without-libnl
-make
+flowseek清除
 
-cd ./lib/nDPI
-./autogen.sh --with-only-libndpi
-./configure 
-make
+```bash
+./build.sh clean
 ```
+
+
 
 
 
@@ -183,8 +175,6 @@ administrate**.
 ## Credits
 
 ### 
-
-
 
 ### Authors
 
@@ -225,6 +215,8 @@ The following organizations supported FlowSeek:
 * [**Collecting and analyzing Tor exit node traffic**](https://www.diva-portal.org/smash/get/diva2:1575255/FULLTEXT01.pdf)
 * [**Analysis and Collection Data from IP Network**](https://sciendo.com/article/10.2478/aei-2022-0013)
 
+
+
 ## License
 
 This project is licensed under the LGPLv3 License - see the [**License**][license] file for details
@@ -253,87 +245,3 @@ This project is licensed under the LGPLv3 License - see the [**License**][licens
 [comnet]: https://www.sciencedirect.com/journal/computer-networks/vol/204/suppl/C
 [packet]: https://manned.org/packet.7
 
-
-
-
-#### 使用说明
-
-1.  windows下VPN-PCAPS-01.zip处理
-
-```bash
-cd aifw\2.PreprocessedTools
-.\1_Pcap2Session.ps1
-.\2_ProcessSession.ps1
-
-python .\3_Session2png.py
-python .\4_Png2Mnist.py
-```
-
-2. 模型训练
-
-```bash
-cd aifw/4.TrainAndTest/1d_cnn_25+3
-#python ./encrypt_traffic_cnn_1d_tf2.py  ../../3.PerprocessResults/12class/SessionL7 12  20000
-python ./encrypt_traffic_cnn_1d_tf2.py ../../2.PreprocessedTools/5_Mnist 12 2000
-Classification Report:
-               precision    recall  f1-score   support
-
-         Chat       0.60      0.87      0.71       349
-        Email       0.75      0.17      0.28       230
-         File       0.92      0.89      0.90       600
-          P2p       0.88      0.92      0.90       100
-    Streaming       0.67      0.73      0.70       139
-         Voip       0.91      0.92      0.91       600
-     Vpn_Chat       0.96      0.93      0.94       401
-    Vpn_Email       0.92      0.83      0.87        29
-     Vpn_File       0.61      0.81      0.70        97
-      Vpn_P2p       0.89      0.91      0.90        45
-Vpn_Streaming       0.74      0.74      0.74        54
-     Vpn_Voip       0.94      0.94      0.94       600
-
-     accuracy                           0.84      3244
-    macro avg       0.82      0.81      0.79      3244
- weighted avg       0.86      0.84      0.83      3244
-```
-
-3. linux下tensorflow推理 - **嵌入式AI部分**
-
-```bash
-cd aifw\5.Invoke
-python.exe .\convert.py
-./build/minimal /tmp/flow_session/vpn_facebook_audio2.TCP_10.8.0.10_42112_173.252.79.94_443.png 
-INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-推理时间: 2686 微秒
-Class Chat probability: 0
-Class Email probability: 0
-Class File probability: 0
-Class P2p probability: 0
-Class Streaming probability: 3.67928e-36
-Class Voip probability: 0
-Class Vpn_Chat probability: 4.78836e-24
-Class Vpn_Email probability: 0
-Class Vpn_File probability: 5.04336e-09
-Class Vpn_P2p probability: 0
-Class Vpn_Streaming probability: 0
-Class Vpn_Voip probability: 1
-Predicted class: Vpn_Voip (class 11) with probability: 1
-```
-
-4. dpi流量识别后端
-
-```bash
-sudo ./ndpiReader -i eth0
-   === 数据包信息 [Flow ID: 369] ===                      
-   地址: 10.125.114.143:2716 <-> 61.221.110.227:58477                                     
-   协议: TLS                                                                               
-   类别: Web                                                                               
-   主机名: cdnj4209.ww000.xyz                                      
-   流量统计:                                                       
-   - 上行: 25 包 / 8864 字节                                       
-   - 下行: 30 包 / 14052 字节                                      
-   时间信息:                                                                               
-   - 首次见到: 2025-02-04 20:43:08.004                             
-   - 最后见到: 2025-02-04 20:43:09.775                                                     
-   风险: Known Proto on Non Std Port,TLS (probably) Not Carrying HTTPS                     
-   =======================
-```
