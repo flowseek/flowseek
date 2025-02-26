@@ -216,26 +216,26 @@ The following organizations supported FlowSeek:
 
 This project is licensed under the LGPLv3 License - see the [**License**][license] file for details
 
-[license]: https://github.com/nfstream/nfstream/blob/master/LICENSE
-[contribute]: https://nfstream.org/docs/community
-[documentation]: https://nfstream.org/
+[license]: https://github.com/FlowSeek/FlowSeek/blob/master/LICENSE
+[contribute]: https://FlowSeek.org/docs/community
+[documentation]: https://FlowSeek.org/
 [ndpi]: https://github.com/ntop/nDPI
 [npcap]: https://npcap.org
-[nfplugin]: https://nfstream.org/docs/api#nfplugin
+[nfplugin]: https://FlowSeek.org/docs/api#nfplugin
 [reliable]: http://people.ac.upc.edu/pbarlet/papers/ground-truth.pam2014.pdf
-[repo]: https://nfstream.org/
-[demo]: https://mybinder.org/v2/gh/nfstream/nfstream/master?filepath=demo_notebook.ipynb
+[repo]: https://github.com/flowseek/flowseek/
+[demo]: https://mybinder.org/v2/gh/FlowSeek/FlowSeek/master?filepath=demo_notebook.ipynb
 [pypy]: https://www.pypy.org/
 [cffi]: https://cffi.readthedocs.io/en/latest/goals.html
-[sah]:https://raw.githubusercontent.com/nfstream/nfstream/master/assets/sah_logo.png?raw=true
-[tuke]:https://raw.githubusercontent.com/nfstream/nfstream/master/assets/tuke_logo.png?raw=true
-[ntop]:https://raw.githubusercontent.com/nfstream/nfstream/master/assets/ntop_logo.png?raw=true
-[nmap]:https://raw.githubusercontent.com/nfstream/nfstream/master/assets/nmap_logo.png?raw=true
-[google]:https://raw.githubusercontent.com/nfstream/nfstream/master/assets/google_logo.png?raw=true
+[sah]:https://raw.githubusercontent.com/FlowSeek/FlowSeek/master/assets/sah_logo.png?raw=true
+[tuke]:https://raw.githubusercontent.com/FlowSeek/FlowSeek/master/assets/tuke_logo.png?raw=true
+[ntop]:https://raw.githubusercontent.com/FlowSeek/FlowSeek/master/assets/ntop_logo.png?raw=true
+[nmap]:https://raw.githubusercontent.com/FlowSeek/FlowSeek/master/assets/nmap_logo.png?raw=true
+[google]:https://raw.githubusercontent.com/FlowSeek/FlowSeek/master/assets/google_logo.png?raw=true
 [l]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/linux-pass-sm.png
 [m]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/mac-pass-sm.png
 [w]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/windows-pass-sm.png
-[install]: https://www.nfstream.org/docs/#building-nfstream-from-sources
+[install]: https://www.FlowSeek.org/docs/#building-FlowSeek-from-sources
 [doi]: https://doi.org/10.1016/j.comnet.2021.108719
 [comnet]: https://www.sciencedirect.com/journal/computer-networks/vol/204/suppl/C
 [packet]: https://manned.org/packet.7
