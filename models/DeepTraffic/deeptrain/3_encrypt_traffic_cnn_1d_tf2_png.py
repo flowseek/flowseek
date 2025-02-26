@@ -15,7 +15,7 @@ CLASS_NUM = int(sys.argv[2])
 
 # Class dictionaries
 class_dicts = {
-    2: {0:'Novpn', 1:'Vpn'},
+    2:  {0:'Vpn_P2p', 1:'Vpn_Voip'},
     6: {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip'},
     12: {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip',
          6:'Vpn_Chat', 7:'Vpn_Email', 8:'Vpn_File', 9:'Vpn_P2p', 10:'Vpn_Streaming', 11:'Vpn_Voip'}
@@ -77,7 +77,8 @@ def main():
         print(f"{i:03}: {float_value:.6f} (Hex: {hex_str})")
 
     # Load existing model
-    model_path = os.path.join("model", "model.h5")
+    #model_path = os.path.join("model", "model.h5")
+    model_path = os.path.join(sys.argv[3])
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file {model_path} does not exist. Please train the model first.")
     
@@ -89,6 +90,8 @@ def main():
     # Perform inference
     y_pred = model.predict(test_image)
     y_pred_class = np.argmax(y_pred, axis=1)[0]
+
+    print(y_pred)
     
     class_dict = class_dicts.get(CLASS_NUM, {})
     pred_label = class_dict.get(y_pred_class, str(y_pred_class))

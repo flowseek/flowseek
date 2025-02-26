@@ -44,21 +44,27 @@ parser.add_argument('--train', required=True, help='训练集图片文件夹路�
 
 args = parser.parse_args()
 
-# 收集所有PNG文件路径
-FileList = []
+# 按类别收集PNG文件路径
+category_files = {}
 for dirname in os.listdir(args.train):
     path = os.path.join(args.train, dirname)
-    for filename in os.listdir(path):
-        if filename.endswith(".png"):
-            FileList.append(os.path.join(args.train, dirname, filename))
+    # 只处理数字目录
+    if dirname.isdigit():
+        files = [os.path.join(path, f) for f in os.listdir(path) if f.endswith(".png")]
+        shuffle(files)
+        category_files[int(dirname)] = files
 
-# 随机打乱文件顺序
-shuffle(FileList)
+# 按类别随机选取10%作为测试集
+train_files = []
+test_files = []
+for label, files in category_files.items():
+    test_size = max(1, int(len(files) * 0.1))  # 每类至少保留1个样本
+    test_files.extend(files[:test_size])
+    train_files.extend(files[test_size:])
 
-# 计算测试集大小（训练集的10%）
-test_size = int(len(FileList) * 0.1)
-test_files = FileList[:test_size]
-train_files = FileList[test_size:]
+# 打乱训练集和测试集的顺序
+shuffle(train_files)
+shuffle(test_files)
 
 # 定义输入输出路径对应关系
 # Names = [文件列表, 输出路径前缀]
@@ -80,6 +86,7 @@ for name in Names:
 			print(f"Skipping invalid label directory: {dirname}")
 			continue
 		
+		print(f"Process png path: {filename}")
 		# 打开图片并获取像素数据
 		Im = Image.open(filename)
 		pixel = Im.load()
@@ -94,7 +101,7 @@ for name in Names:
 		data_label.append(label) # 每个标签占1个无符号字节
 
 	# 将文件数量转换为16进制格式
-	hexval = "{0:#0{1}x}".format(len(FileList),6) # 文件数量转为16进制
+	hexval = "{0:#0{1}x}".format(len(name[0]),6) # 文件数量转为16进制
 	hexval = '0x' + hexval[2:].zfill(8)  # 格式化8位16进制数
 	
 	# 创建标签文件的头信息

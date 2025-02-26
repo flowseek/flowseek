@@ -119,14 +119,33 @@ as input features. For the sake of brevity, we decide to predict only at the flo
 
 #### Training the model
 
-```python
+```bash
+python ./1_Png2Mnist.py --train ./Train
+python ./2_encrypt_traffic_cnn_1d_tf2.py ./Mnist 2 3000
+...
+Classification Report:
+              precision    recall  f1-score   support
 
+     Vpn_P2p       0.89      0.78      0.83        40
+    Vpn_Voip       0.97      0.99      0.98       285
+
+    accuracy                           0.96       325
+   macro avg       0.93      0.88      0.90       325
+weighted avg       0.96      0.96      0.96       325
 ```
 
-#### ML powered streamer on live traffic
+#### Predict by model
 
-```python
-
+```bash
+python ./3_encrypt_traffic_cnn_1d_tf2_png.py Train/0/vpn_bittorrent.pcap.TCP_10-8-8-130_33781_207-241-227-212_80.png 2  ./model_2class_Mnist/model.h5
+...
+Loading existing model...
+ Total params: 5,822,340 (22.21 MB)
+ Trainable params: 5,822,338 (22.21 MB)
+ Non-trainable params: 0 (0.00 B)
+ Optimizer params: 2 (12.00 B)
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 72ms/step
+Predicted Label: Vpn_P2p
 ```
 
 

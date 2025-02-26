@@ -13,10 +13,9 @@ TRAIN_ROUND = int(sys.argv[3])
 
 # Class dictionaries
 class_dicts = {
-    2: {0:'Novpn', 1:'Vpn'},
-    6: {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip'},
-    12: {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip',
-         6:'Vpn_Chat', 7:'Vpn_Email', 8:'Vpn_File', 9:'Vpn_P2p', 10:'Vpn_Streaming', 11:'Vpn_Voip'}
+    2:  {0:'Vpn_P2p', 1:'Vpn_Voip'},
+    6:  {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip'},
+    12: {0:'Chat', 1:'Email', 2:'File', 3:'P2p', 4:'Streaming', 5:'Voip', 6:'Vpn_Chat', 7:'Vpn_Email', 8:'Vpn_File', 9:'Vpn_P2p', 10:'Vpn_Streaming', 11:'Vpn_Voip'}
 }
 
 def build_model(input_shape, num_classes):
