@@ -133,26 +133,24 @@ as input features. For the sake of brevity, we decide to predict only at the flo
 
 ## Building from sources
 
-git自模块同步和编译，只需第一次编译时执行
+Git submodule synchronization and compilation，only when first build.
 ```bash
 chmod +x ./build.sh
 ./build.sh check
 ./build.sh lib
 ```
 
-flowseek编译
+flowseek make
 
 ```bash
 ./build.sh make
 ```
 
-flowseek清除
+flowseek clean
 
 ```bash
 ./build.sh clean
 ```
-
-
 
 
 
@@ -174,13 +172,11 @@ administrate**.
 
 ## Credits
 
-### 
-
 ### Authors
 
 The following people contributed to FlowSeek:
 
-* [**阿威**](mailto:aouinizied@gmail.com): Creator and core developer.
+* [**阿威**](mailto:missazuozhu@gmail.com): Creator and core developer.
 
   
 
@@ -189,8 +185,7 @@ The following people contributed to FlowSeek:
 The following organizations supported FlowSeek:
 
 * [**ntop**](https://www.ntop.org/): Technical support of [**nDPI**][ndpi] integration.
-* [**The Nmap Project**](https://nmap.org): Technical support of [**Npcap**][npcap] integration
-  (NPCAP OEM installer on Windows CI).
+* [**The Nmap Project**](https://nmap.org): Technical support of [**Npcap**][npcap] integration (NPCAP OEM installer on Windows CI).
 
 
 
