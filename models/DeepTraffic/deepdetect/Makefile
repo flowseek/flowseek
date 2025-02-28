@@ -109,7 +109,8 @@ LOCAL_LIB_DIR   =
 # ------------  private libraries  (e.g. libxyz.a )  ---------------------------
 LOCAL_LIBS      = ../../tflite_build/libtensorflow-lite.so \
 									../../tflite_build/_deps/abseil-cpp-build/absl/log/lib*.so \
-									../../tflite_build/_deps/abseil-cpp-build/absl/base/lib*.so
+									../../tflite_build/_deps/abseil-cpp-build/absl/base/lib*.so \
+									../../tflite_build/_deps/abseil-cpp-build/absl/strings/lib*.so
 									#../../tflite_build/_deps/abseil-cpp-build/absl/debugging/lib*.so
 									#../../tflite_build/_deps/ruy-build/ruy/libruy*.a \
 									#../../tflite_build/_deps/farmhash-build/libfarmhash.a
