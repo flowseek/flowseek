@@ -44,6 +44,20 @@ int ProcessSingleImage(const std::string& image_path, tflite::Interpreter* inter
         return -1;
     }
 
+    // 从文件名中提取flow_id
+    std::string filename = fs::path(image_path).filename().string();
+    int flow_id = -1;
+    if (filename.rfind("flow_", 0) == 0) {  // 检查是否以flow_开头
+        size_t underscore_pos = filename.find('_', 5);  // 查找第二个下划线
+        if (underscore_pos != std::string::npos) {
+            std::string id_str = filename.substr(5, underscore_pos - 5);
+            flow_id = std::stoi(id_str);
+        }
+    }
+
+    if(flow_id == -1)
+        return -1;
+
     // 使用 OpenCV 加载图像
     cv::Mat image = cv::imread(image_path, cv::IMREAD_GRAYSCALE);
     if (image.empty()) {
@@ -97,16 +111,6 @@ int ProcessSingleImage(const std::string& image_path, tflite::Interpreter* inter
               << "Inference time: " << duration.count() << " μs\n"
               << "----------------------------------------\n";
 
-    // 从文件名中提取flow_id
-    std::string filename = fs::path(image_path).filename().string();
-    int flow_id = -1;
-    if (filename.rfind("flow_", 0) == 0) {  // 检查是否以flow_开头
-        size_t underscore_pos = filename.find('_', 5);  // 查找第二个下划线
-        if (underscore_pos != std::string::npos) {
-            std::string id_str = filename.substr(5, underscore_pos - 5);
-            flow_id = std::stoi(id_str);
-        }
-    }
 
     // 如果成功提取到flow_id，则更新数据库
     if (flow_id != -1) {
@@ -132,6 +136,19 @@ int ProcessSingleImage(const std::string& image_path, tflite::Interpreter* inter
                 sqlite3_free(err_msg);
             }
             sqlite3_close(db);
+        }
+    }
+
+    // 根据预测结果重命名文件
+    if (predicted_class != -1) {
+        std::string new_filename = dict_12class[predicted_class] + "_" + filename.substr(5);
+        fs::path new_path = fs::path(image_path).parent_path() / new_filename;
+        
+        try {
+            fs::rename(image_path, new_path);
+            std::cout << "Renamed file to: " << new_path.filename() << "\n";
+        } catch (const fs::filesystem_error& e) {
+            std::cerr << "Error renaming file: " << e.what() << "\n";
         }
     }
 

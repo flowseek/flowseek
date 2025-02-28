@@ -45,9 +45,31 @@ fi
 
 if [ "$1" == "run" ]; then
 
-    export LD_LIBRARY_PATH=$current_dir/tflite_build:$current_dir//tflite_build/_deps/abseil-cpp-build/absl/base:$current_dir/tflite_build/_deps/abseil-cpp-build/absl/strings:$current_dir/tflite_build/_deps/abseil-cpp-build/absl/log:$LD_LIBRARY_PATH  
+    export LD_LIBRARY_PATH=$current_dir/tflite_build:$current_dir/tflite_build/_deps/abseil-cpp-build/absl/base:$current_dir/tflite_build/_deps/abseil-cpp-build/absl/strings:$current_dir/tflite_build/_deps/abseil-cpp-build/absl/log:$LD_LIBRARY_PATH  
     cd $current_dir/DeepTraffic/deepdetect
-    ./x86_64-pc-linux-gnu-deepdetect $2
+
+    # 检查目录是否存在
+    if [ ! -d "$2" ]; then
+        echo "Directory $2 does not exist!"
+        exit 1
+    fi
+
+    # 循环检测并处理flow开头的文件
+    while true; do
+        # 查找以flow开头的文件
+        flow_files=$(find "$2" -type f -name "flow_*")
+        
+        if [ -n "$flow_files" ]; then
+            # 如果找到flow开头的文件，执行推理
+            ./x86_64-pc-linux-gnu-deepdetect "$2"
+            # 等待1秒避免频繁检测
+            sleep 1
+        else
+            # 如果没有找到文件，等待5秒后再次检测
+            echo "No flow_* files found, waiting..."
+            sleep 5
+        fi
+    done
 
     exit 1
 fi
