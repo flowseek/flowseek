@@ -55,10 +55,10 @@ sudo ./x86_64-pc-linux-gnu-flowseek -i wlan0
 
 
 
-**Real-Time Predict**
+**Deep Learning Real-Time Predict**
 
 ```bash
-cd modes
+cd models
 sudo ./build.sh run /tmp/flow_session
 ```
 
@@ -128,11 +128,17 @@ flow categorization.
 We want to run a classification of Social Network category flows based on bidirectional_packets and bidirectional_bytes
 as input features. For the sake of brevity, we decide to predict only at the flow expiration stage.
 
-#### Training the model
+#### Training the model.h5
 
 ```bash
+cd models/DeepTraffic/deeptrain/
+#sudo ./x86_64-pc-linux-gnu-flowseek -i vpn_p2p.pcap
+mv /tmp/flow_session ./Train/0
+#sudo ./x86_64-pc-linux-gnu-flowseek -i vpn_voip.pcap
+mv /tmp/flow_session ./Train/1
+
 python ./1_Png2Mnist.py --train ./Train
-python ./2_encrypt_traffic_cnn_1d_tf2.py ./Mnist 2 3000
+python ./2_encrypt_traffic_cnn_1d_tf2.py ./Train 2 3000
 ...
 Classification Report:
               precision    recall  f1-score   support
@@ -145,7 +151,7 @@ Classification Report:
 weighted avg       0.96      0.96      0.96       325
 ```
 
-#### Predict by model
+#### Predict by model.h5
 
 ```bash
 python ./3_encrypt_traffic_cnn_1d_tf2_png.py Train/0/vpn_bittorrent.pcap.TCP_10-8-8-130_33781_207-241-227-212_80.png 2  ./model_2class_Mnist/model.h5
@@ -186,6 +192,14 @@ flowseek clean
 
 ```bash
 ./build.sh clean
+```
+
+
+
+```
+cd models
+sudo ./build.sh tflite
+sudo ./build.sh make
 ```
 
 
