@@ -121,7 +121,7 @@ FlowSeek natively supports CSV file format as an export interface.
 
 
 
-### Machine Learning models training and deployment
+### Deep Learning models training and deployment
 
 The following simplistic example demonstrates how to train and deploy a machine-learning approach for traffic
 flow categorization.
