@@ -1,10 +1,10 @@
 <div align="center">
 <h1 align="center">FlowSeek 🚀</h1>
 <p align="center">
-  <a href="https://github.com/flowseek/flowseek/stargazers"><img src="https://img.shields.io/github/stars/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge"</a>
-  <a href="https://github.com/flowseek/flowseek/issues"><img src="https://img.shields.io/github/issues/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge" alt="Issues"></a>
-  <a href="https://github.com/flowseek/flowseek/network/members"><img src="https://img.shields.io/github/forks/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge" alt="Forks"></a>
-  <a href="https://github.com/flowseek/flowseek/blob/main/LICENSE"><img src="https://img.shields.io/github/license/flowseek/flowseek.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/flowseek/flowseek/stargazers"><img src="https://img.shields.io/github/stars/flowseek/flowseek?style=for-the-badge"</a>
+  <a href="https://github.com/flowseek/flowseek/issues"><img src="https://img.shields.io/github/issues/flowseek/flowseek?style=for-the-badge" alt="Issues"></a>
+  <a href="https://github.com/flowseek/flowseek/network/members"><img src="https://img.shields.io/github/forks/flowseek/flowseek?style=for-the-badge" alt="Forks"></a>
+  <a href="https://github.com/flowseek/flowseek/blob/main/LICENSE"><img src="https://img.shields.io/github/license/flowseek/flowseek?style=for-the-badge" alt="License"></a>
 </p>
 <br>
 <div align="center">
@@ -13,12 +13,13 @@
 <br>
 <b>FlowSeek</b>  is a multiplatform c/c++ framework providing fast, flexible, and expressive data structures designed to make
 working with <b>online</b> or <b>offline</b> network data easy and intuitive. It aims to be c/c++'s fundamental high-level
-building block for doing practical, **real-world** network flow data analysis. Additionally, it has the broader
+building block for doing practical, <b>real-world</b> network flow data analysis. Additionally, it has the broader
 goal of becoming <b>a unifying network data analytics framework for researchers</b> providing data reproducibility
 across experiments.
 <br>
 <h4>Web界面</h4>
 </div>
+
 
 ![](README/0250226_111807.png)
 --------------------------------------------------------------------------------
@@ -237,7 +238,7 @@ administrate**.
 
 The following people contributed to FlowSeek:
 
-* [**阿威**](mailto:missazuozhu@gmail.com): Creator and core developer.
+* [**Deephone**](mailto:missazuozhu@gmail.com): Creator and core developer.
 
   
 
