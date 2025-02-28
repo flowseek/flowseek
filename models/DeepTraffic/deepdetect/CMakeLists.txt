@@ -17,17 +17,10 @@
 # Builds the detect_cnn Tensorflow Lite example.
 
 cmake_minimum_required(VERSION 3.16)
-set(TENSORFLOW_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../lib/tensorflow")
-project(detect_cnn C CXX)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
-#set(TENSORFLOW_SOURCE_DIR "" CACHE PATH
-#  "Directory that contains the TensorFlow project" )
-#if(NOT TENSORFLOW_SOURCE_DIR)
-#  get_filename_component(TENSORFLOW_SOURCE_DIR
-#    "${CMAKE_CURRENT_LIST_DIR}/../../../../" ABSOLUTE)
-#endif()
+project(deepdetect C CXX)
 
+set(TENSORFLOW_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../../../lib/tensorflow")
 add_subdirectory(
   "${TENSORFLOW_SOURCE_DIR}/tensorflow/lite"
   "${CMAKE_CURRENT_BINARY_DIR}/build" EXCLUDE_FROM_ALL)
@@ -42,13 +35,13 @@ execute_process(COMMAND pkg-config --libs opencv4
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # 添加SQLite3源文件
-set(SQLITE3_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../lib/sqlite3")
+set(SQLITE3_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../../../lib/sqlite3")
 set(SQLITE3_SOURCES 
     ${SQLITE3_SOURCE_DIR}/sqlite3.c
     ${SQLITE3_SOURCE_DIR}/sqlite3.h
 )
 
-add_executable(detect_cnn detect_cnn.cc ${SQLITE3_SOURCES})
+add_executable(detect_cnn deepdetect.cc ${SQLITE3_SOURCES})
 
 # 将编译标志传递给目标
 target_compile_options(detect_cnn PRIVATE ${OPENCV_CFLAGS})

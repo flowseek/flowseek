@@ -38,7 +38,7 @@ PROFILE        	:= NO
 EXECUTABLE      := $(MACHINE)-$(CURRENT_DIR)
 
 # ------------  list of all source files  --------------------------------------
-SOURCES         := $(wildcard ./*.c ./src/*.c ./lib/sqlite3/sqlite3.c) 
+SOURCES         := $(wildcard ./*.cc ../../../lib/sqlite3/sqlite3.c) 
 
 # ------------  compiler  ------------------------------------------------------
 #export LC_ALL=C
@@ -56,15 +56,18 @@ AR              ?= ar
 CC              ?= gcc
 CXX             ?= g++
    
+OPENCV_CFLAGS = `pkg-config --cflags opencv4`
+OPENCV_LIBS = `pkg-config --libs opencv4`
+
 # ------------  compiler flags  ------------------------------------------------
-DEBUG_CFLAGS    :=  -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1 -O2 -DUSE_GLOBAL_CONTEXT -Wall -O3 -fvisibility=hidden -s -Wno-unused-result -Wno-maybe-uninitialized -Werror=format-security -g 	#
-RELEASE_CFLAGS  :=  -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1 -O2 -DUSE_GLOBAL_CONTEXT -Wall -O3 -fvisibility=hidden -s -Wno-unused-result -Wno-maybe-uninitialized -Werror=format-security 		#-Werror  
+DEBUG_CFLAGS    := $(OPENCV_CFLAGS) -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1 -O2 -DUSE_GLOBAL_CONTEXT -Wall -O3 -fvisibility=hidden -s -Wno-unused-result -Wno-maybe-uninitialized -Werror=format-security -g 	#
+RELEASE_CFLAGS  := $(OPENCV_CFLAGS) -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1 -O2 -DUSE_GLOBAL_CONTEXT -Wall -O3 -fvisibility=hidden -s -Wno-unused-result -Wno-maybe-uninitialized -Werror=format-security 		#-Werror  
 
 # ------------  linker flags  --------------------------------------------------
 #DEBUG_LDFLAGS    := -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections --static -g 
 #RELEASE_LDFLAGS  := -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections --static
-DEBUG_LDFLAGS    := -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections -g 
-RELEASE_LDFLAGS  := -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections
+DEBUG_LDFLAGS    := $(OPENCV_LIBS)  -lutil -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections -g 
+RELEASE_LDFLAGS  := $(OPENCV_LIBS)  -lutil -lm -lpthread -lpng -ffunction-sections -fdata-sections  -Wl,-gc-sections
 
 ifeq (YES, ${DEBUG})
   CFLAGS       := ${DEBUG_CFLAGS}
@@ -86,7 +89,7 @@ endif
 GLOBAL_INC_DIR  = 
 
 # ------------  private include directories  -----------------------------------
-LOCAL_INC_DIR   = ./tflite_build/src
+LOCAL_INC_DIR   = ../../../lib/tensorflow ../../../lib/sqlite3 ../../tflite_build/flatbuffers/include 
 
 # ------------  system libraries  (e.g. -lm )  ---------------------------------
 SYS_LIBS        =
@@ -104,7 +107,13 @@ GLOBAL_LIBS     =
 LOCAL_LIB_DIR   = 
 
 # ------------  private libraries  (e.g. libxyz.a )  ---------------------------
-LOCAL_LIBS      = ./tflite_build/tensorflowlite_c.a
+LOCAL_LIBS      = ../../tflite_build/libtensorflow-lite.so \
+									../../tflite_build/_deps/abseil-cpp-build/absl/log/lib*.so \
+									../../tflite_build/_deps/abseil-cpp-build/absl/base/lib*.so
+									#../../tflite_build/_deps/abseil-cpp-build/absl/debugging/lib*.so
+									#../../tflite_build/_deps/ruy-build/ruy/libruy*.a \
+									#../../tflite_build/_deps/farmhash-build/libfarmhash.a
+
 
 # ------------  archive generation ---------------------------------------------
 TARBALL_EXCLUDE = *.{o,gz,zip}
