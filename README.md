@@ -1,12 +1,27 @@
-# FlowSeek
-
---------------------------------------------------------------------------------
-[**FlowSeek**][repo] is a multiplatform c/c++ framework providing fast, flexible, and expressive data structures designed to make
-working with **online** or **offline** network data easy and intuitive. It aims to be c/c++'s fundamental high-level
+<div align="center">
+<h1 align="center">FlowSeek 🚀</h1>
+<p align="center">
+  <a href="https://github.com/flowseek/flowseek/stargazers"><img src="https://img.shields.io/github/stars/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge"</a>
+  <a href="https://github.com/flowseek/flowseek/issues"><img src="https://img.shields.io/github/issues/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge" alt="Issues"></a>
+  <a href="https://github.com/flowseek/flowseek/network/members"><img src="https://img.shields.io/github/forks/harry0703/MoneyPrinterTurbo.svg?style=for-the-badge" alt="Forks"></a>
+  <a href="https://github.com/flowseek/flowseek/blob/main/LICENSE"><img src="https://img.shields.io/github/license/flowseek/flowseek.svg?style=for-the-badge" alt="License"></a>
+</p>
+<br>
+<div align="center">
+  <a href="https://trendshift.io/repositories/8731" target="_blank"><img src="https://trendshift.io/api/badge/repositories/8731" alt="harry0703%2FMoneyPrinterTurbo | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
+<br>
+<b>FlowSeek</b>  is a multiplatform c/c++ framework providing fast, flexible, and expressive data structures designed to make
+working with <b>online</b> or <b>offline</b> network data easy and intuitive. It aims to be c/c++'s fundamental high-level
 building block for doing practical, **real-world** network flow data analysis. Additionally, it has the broader
-goal of becoming **a unifying network data analytics framework for researchers** providing data reproducibility
+goal of becoming <b>a unifying network data analytics framework for researchers</b> providing data reproducibility
 across experiments.
+<br>
+<h4>Web界面</h4>
+</div>
 
+![](README/0250226_111807.png)
+--------------------------------------------------------------------------------
 
 
 ## Main Features
@@ -62,11 +77,7 @@ cd models
 sudo ./build.sh run /tmp/flow_session
 ```
 
-
-
 Open the browser http://localhost:3000.
-
-![](assets/0250226_111807.png)
 
 
 
