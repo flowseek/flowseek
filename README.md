@@ -53,6 +53,17 @@ cd x86_64-pc-linux-gnu-flowseek
 sudo ./x86_64-pc-linux-gnu-flowseek -i wlan0
 ```
 
+
+
+**Real-Time Predict**
+
+```bash
+cd modes
+sudo ./build.sh run /tmp/flow_session
+```
+
+
+
 Open the browser http://localhost:3000.
 
 ![](assets/0250226_111807.png)
